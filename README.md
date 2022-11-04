@@ -1,0 +1,1 @@
+Pokedex feita com Vanilla JS, utilizando o Fetch API pra consumir APIs.
