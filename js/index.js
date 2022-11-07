@@ -6,7 +6,7 @@ const inputSearch = document.querySelector('.input__search');
 const buttonPrev = document.querySelector('.btn-prev');
 const buttonNext = document.querySelector('.btn-next');
 
-let searchPokemon = 1;
+let pokemonSearch = 1;
 const fetchPokemon = async (pokemon) => {
     const APIResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
     if (APIResponse.status === 200) {
@@ -27,7 +27,7 @@ const renderPokemon = async (pokemon) => {
         pokemonNumber.innerHTML = data.id;
         pokemonImage.setAttribute('src', data['sprites']['versions']['generation-v']['black-white']['animated']['front_default'])
         inputSearch.value = '';
-        searchPokemon = data.id;
+        pokemonSearch = data.id;
     } else {
         pokemonImage.style.display = 'none';
         pokemonName.innerHTML = 'Not found :c';
@@ -39,13 +39,13 @@ form.addEventListener('submit', e => {
     renderPokemon(inputSearch.value.toLowerCase())
 })
 buttonPrev.addEventListener('click', () => {
-    if(searchPokemon > 1) {
-        searchPokemon -=1;
-        renderPokemon(searchPokemon)
+    if(pokemonSearch > 1) {
+        pokemonSearch -=1;
+        renderPokemon(pokemonSearch)
     }
 })
 buttonNext.addEventListener('click', () => {
-    searchPokemon += 1;
-    renderPokemon(searchPokemon);
+    pokemonSearch += 1;
+    renderPokemon(pokemonSearch);
 })
-renderPokemon(searchPokemon)
+renderPokemon(pokemonSearch)
